@@ -6,6 +6,8 @@ export default defineConfig({
     environment: "node",
     coverage: {
       reporter: ["text", "html"],
+      include: ["src/**"],
+      exclude: ["src/index.ts"]
     }
   }
 });

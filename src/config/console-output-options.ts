@@ -14,7 +14,7 @@ export class ConsoleOutputOptions implements ILogoraOutputOptions {
    *
    * Default: LogLevel.Info
    */
-  level: LogLevel = LogLevel.Info;
+  level?: LogLevel;
 
   /**
    * Whether to apply ANSI colors to the console output.
