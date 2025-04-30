@@ -1,6 +1,6 @@
 import { describe, it, vi, expect, beforeEach, afterEach } from "vitest";
 import { LogType } from "logora";
-import { ConsoleWriter } from "../../src/core/console-writer";
+import { ConsoleWriter } from "../../src/core/writer";
 import { ConsoleOutputOptions } from "../../src/config";
 
 describe("ConsoleWriter", () => {

@@ -1,18 +1,20 @@
-import { ConsoleColor } from "../enums/console-color.enum";
-import { ConsolePalette } from "../config/console-palette";
 import { ILogoraOutputOptions, LogLevel } from "logora";
+import { ConsoleDefaults } from "../core/defaults";
+import { ConsolePalette } from "../core/palette";
+import { ILogEntryFormats } from "../models/log-entry-formats.interface";
 
 /**
  * Configuration options for the `createConsoleOutput()` function.
  * 
- * Defines the console output behavior, including levels, colors, timestamp formats, and header rendering.
+ * Defines the console output behavior, including minimum log level, ANSI coloring,
+ * timestamp formatting, and optional daily header insertion.
  */
 export class ConsoleOutputOptions implements ILogoraOutputOptions {
   /**
    * Minimum log level to display.
-   * Entries below this level are ignored by the output.
+   * Entries with a lower level will be ignored by the output.
    *
-   * Default: LogLevel.Info
+   * Default behavior: LogLevel.Info (if not explicitly overridden).
    */
   level?: LogLevel;
 
@@ -24,48 +26,35 @@ export class ConsoleOutputOptions implements ILogoraOutputOptions {
   useColors: boolean = true;
 
   /**
-   * Format string for timestamps displayed with each log entry.
-   * Follows moment.js formatting (e.g., "HH:mm:ss").
-   *
-   * Default: "HH:mm:ss"
-   */
-  timestampFormat: string = "HH:mm:ss";
-
-  /**
-   * Optional format for rendering a daily date header when the day changes.
-   * Follows moment.js formatting (e.g., "MMMM Do YYYY, hh:mm:ss").
-   *
-   * Default: "MMMM Do YYYY, hh:mm:ss"
-   */
-  dateHeaderFormat: string = "MMMM Do YYYY, hh:mm:ss";
-
-  /**
-   * Whether to print a header separator when the day changes.
-   * If true, a formatted date header will be inserted automatically.
+   * Whether to automatically print a header when the date changes.
+   * If enabled, a formatted date line will be inserted between log entries.
    *
    * Default: true
    */
   showDateHeader: boolean = true;
 
   /**
-   * Optional color to apply specifically to scope labels.
-   * Overrides the scope color defined in the palette if provided.
+   * Format string describing how each log entry is structured.
+   * Placeholders like [%timestamp%], [%scope%], %type%, and %message% are supported.
    *
-   * Default: ConsoleColor.Bright
+   * Default: ConsoleDefaults.Log
    */
-  scopeColor: ConsoleColor = ConsoleColor.Bright;
+  formatString: string = ConsoleDefaults.Log;
 
   /**
-   * Palette of colors used for different log types and sections.
-   * If a partial palette is provided by the user, it is merged into the default ConsolePalette.
+   * Fine-grained formatting rules for specific parts of log entries (timestamp, date header, etc.).
+   * Unspecified elements fall back to default settings.
    */
-  colors: ConsolePalette = new ConsolePalette();
+  logFormat: Partial<ILogEntryFormats> = {
+    dailyDateHeader: { format: ConsoleDefaults.DailyHeaderDateFormat, formatString: ConsoleDefaults.DailyHeader, color: ConsolePalette.Emphasis },
+    timestamp: { format: ConsoleDefaults.TimestampFormat, color: ConsolePalette.Timestamp },
+  };
 
   /**
-   * Constructs a new ConsoleOutputOptions instance,
-   * applying default values and overriding them with any provided configuration.
+   * Constructs a new instance of ConsoleOutputOptions,
+   * applying default values and optionally overriding them with the provided configuration.
    *
-   * @param overrides Optional partial configuration to customize behavior.
+   * @param overrides Optional partial object to customize the output configuration.
    */
   constructor(overrides?: Partial<ConsoleOutputOptions>) {
     Object.assign(this, overrides);

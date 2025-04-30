@@ -1,5 +1,5 @@
 import { describe, it, expect } from "vitest";
-import { ConsoleOutput } from "../../src/core/console-output";
+import { ConsoleOutput } from "../../src/core/output";
 
 describe("ConsoleOutput", () => {
   it("should create a ConsoleOutput instance", () => {

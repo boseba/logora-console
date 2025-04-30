@@ -1,1 +1,2 @@
-export * from "./console-color.enum";
+export * from "./color.enum";
+export * from "./modifier.enum";

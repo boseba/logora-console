@@ -1,5 +1,5 @@
-import { ConsoleOutputOptions, ConsolePalette } from "./config";
-import { ConsoleOutput } from "./core/console-output";
+import { ConsoleOutputOptions } from "./config";
+import { ConsoleOutput } from "./core/output";
 
 export * from "./config";
 export * from "./enums";
@@ -28,9 +28,6 @@ export * from "./enums";
  */
 export function createConsoleOutput(config?: Partial<ConsoleOutputOptions>): ConsoleOutput {
   const options = new ConsoleOutputOptions(config);
-  const palette = new ConsolePalette(options.colors);
-
-  options.colors = palette;
   
   return new ConsoleOutput(options);
 }

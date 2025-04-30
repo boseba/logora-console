@@ -1,7 +1,7 @@
 import { ILogoraOutput } from "logora";
 import { ILogoraWriter } from "logora/module";
 import { ConsoleOutputOptions } from "../config";
-import { ConsoleWriter } from "./console-writer";
+import { ConsoleWriter } from "./writer";
 
 /**
  * ConsoleOutput is a transport for Logora that renders log entries to the console.

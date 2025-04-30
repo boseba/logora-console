@@ -1,5 +1,5 @@
 import type { ILogoraWriter, LogEntry } from "logora/module";
-import { ConsoleFormatter } from "../formatter/console-formatter";
+import { ConsoleFormatter } from "./formatter";
 import { ConsoleOutputOptions } from "../config";
 
 /**
@@ -42,14 +42,14 @@ export class ConsoleWriter implements ILogoraWriter {
   /**
    * Prints a raw formatted message without structured metadata.
    *
-   * @param message Template string containing optional placeholders.
+   * @param message Template string containing optional Placeholder.
    * @param args Dynamic values to inject into the message template.
    */
   print(message: string, ...args: unknown[]): void {
     const now = new Date();
     this.checkDailyHeader(now);
 
-    const formatted = this.formatter.format(message, args);
+    const formatted = this.formatter.formatMessage(message, args);
     console.log(formatted);
 
     this._lastLogDate = now;
@@ -64,7 +64,7 @@ export class ConsoleWriter implements ILogoraWriter {
     const now = new Date();
     this.checkDailyHeader(now);
 
-    const formatted = this.formatter.title(title);
+    const formatted = this.formatter.formatTitle(title);
     console.log(formatted);
 
     this._lastLogDate = now;
@@ -100,10 +100,10 @@ export class ConsoleWriter implements ILogoraWriter {
     }
 
     if (
-      this.options.dateHeaderFormat &&
+      this.options.showDateHeader &&
       now.getDate() !== this._lastLogDate.getDate()
     ) {
-      const header = this.formatter.formatDateHeader(now);
+      const header = this.formatter.formatDailyHeader(now);
       console.log("\n" + header + "\n");
     }
   }
