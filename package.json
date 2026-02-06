@@ -60,6 +60,6 @@
   },
   "dependencies": {
     "dayjs": "^1.11.13",
-    "logora": "^2.0.3"
+    "logora": "^2.0.4"
   }
 }
