@@ -1,6 +1,6 @@
 {
   "name": "logora-console",
-  "version": "1.1.1",
+  "version": "1.1.2",
   "description": "Console output plugin for Logora – renders logs to stdout with colors, scopes, and timestamps.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
