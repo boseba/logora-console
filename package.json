@@ -1,6 +1,6 @@
 {
   "name": "logora-console",
-  "version": "1.1.0",
+  "version": "1.1.1",
   "description": "Console output plugin for Logora – renders logs to stdout with colors, scopes, and timestamps.",
   "main": "dist/index.js",
   "types": "dist/index.d.ts",
@@ -9,8 +9,9 @@
   ],
   "exports": {
     ".": {
+      "types": "./dist/index.d.ts",
       "require": "./dist/index.js",
-      "types": "./dist/index.d.ts"
+      "default": "./dist/index.js"
     }
   },
   "scripts": {
@@ -38,7 +39,7 @@
   "license": "MIT",
   "repository": {
     "type": "git",
-    "url": "https://github.com/boseba/logora-console.git"
+    "url": "git+https://github.com/boseba/logora-console.git"
   },
   "bugs": {
     "url": "https://github.com/boseba/logora-console/issues"
@@ -58,7 +59,7 @@
     "vitest": "^3.1.2"
   },
   "dependencies": {
-    "logora": "^2.0.1",
-    "moment": "^2.30.1"
+    "dayjs": "^1.11.13",
+    "logora": "^2.0.3"
   }
 }

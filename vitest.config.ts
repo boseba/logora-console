@@ -5,7 +5,7 @@ export default defineConfig({
     globals: true,
     environment: "node",
     coverage: {
-      reporter: ["text", "html"],
+      reporter: ["text", "lcov", "html"],
       include: ["src/**"],
       exclude: ["src/index.ts"]
     }

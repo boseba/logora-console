@@ -1,5 +1,4 @@
 import { LogType } from "logora";
-import moment from "moment";
 import { ConsoleOutputOptions } from "../config/console-output-options";
 import { Modifier } from "../enums";
 import { ConsoleColor } from "../enums/color.enum";
@@ -7,6 +6,7 @@ import { Placeholder } from "../enums/placeholder.enum";
 import { IStringFormat } from "../models/formats.interface";
 import { ConsoleDefaults } from "./defaults";
 import { ConsolePalette } from "./palette";
+import dayjs from "dayjs";
 
 /**
  * Formats log entries into styled console output based on user configuration.
@@ -67,7 +67,7 @@ export class FieldFormatter {
   formatDailyHeader(date: Date): string {
     const header = this.options.logFormat.dailyDateHeader?.formatString.replace(
       Placeholder.DailyHeader,
-      moment(date).format(
+      dayjs(date).format(
         this.options.logFormat.dailyDateHeader?.format ??
           ConsoleDefaults.DailyHeaderDateFormat
       )
@@ -89,7 +89,7 @@ export class FieldFormatter {
     const format =
       this.options.logFormat?.timestamp?.format ??
       ConsoleDefaults.TimestampFormat;
-    const raw = moment(date).format(format);
+    const raw = dayjs(date).format(format);
     const modified = this.applyModifier(
       raw,
       this.options.logFormat?.timestamp?.modifier
