@@ -1,6 +1,7 @@
 # logora-console
 
 [![NPM version](https://img.shields.io/npm/v/logora-console?style=flat-square)](https://www.npmjs.com/package/logora-console)
+[![Coverage Status](https://coveralls.io/repos/github/boseba/logora-console/badge.svg?branch=main)](https://coveralls.io/github/boseba/logora-console?branch=main)
 
 **logora-console** is the official console output module for the [Logora](https://www.npmjs.com/package/logora) logging framework.
 
